@@ -1,6 +1,6 @@
 # Template file for 'terraform'
 pkgname=terraform
-version=1.1.6
+version=1.5.6
 revision=1
 build_style=go
 go_import_path="github.com/hashicorp/$pkgname"
@@ -9,4 +9,4 @@ maintainer="Andrea Brancaleoni <abc@pompel.me>"
 license="MPL-2.0"
 homepage="https://www.terraform.io/"
 distfiles="https://$go_import_path/archive/v$version.tar.gz"
-checksum=4dd037773928b93ba98c7885c9f2f500db96c407555459a744f8316ab9b16d34
+checksum=b5866bf9c7efef74e1f6f2a7ba0a39e645ce77f5dfeb4faebb38e8e7d21476f1

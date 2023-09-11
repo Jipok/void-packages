@@ -1,20 +1,23 @@
 # Template file for 'nomad'
 pkgname=nomad
-version=1.2.3
+version=1.5.6
 revision=2
 build_style=go
 go_import_path="github.com/hashicorp/nomad"
 go_build_tags="ui release"
-_git_commit=55e5c49b99a6fd2bf925e7fd98d95829776c331f
+_git_commit=8af70885c02ab921dedbdf6bc406a1e886866f80
 go_ldflags="-X ${go_import_path}/version.GitCommit=${_git_commit}"
-hostmakedepends="git"
+depends="cni-plugins"
 short_desc="Cluster scheduler designed to easily integrate into existing workflows"
 maintainer="Michael Aldridge <maldridge@voidlinux.org>"
 license="MPL-2.0"
 homepage="https://www.nomadproject.io/"
 distfiles="https://github.com/hashicorp/nomad/archive/v${version}.tar.gz"
-checksum=36e074f34091043a2b5d115496f371fb9df048134f402bb5943e17bcb2f911ff
+checksum=21bb378584a3f0e3bf3731f89b64658fedf20c829de8eedba9a6773cddfa0c3e
+make_dirs="/etc/nomad.d 0755 root root
+ /var/lib/nomad 0755 root root"
 
 post_install() {
 	vlicense LICENSE
+	vsv nomad
 }

@@ -1,18 +1,19 @@
 # Template file for 'libssh'
 pkgname=libssh
-version=0.9.5
+version=0.10.5
 revision=2
 build_style=cmake
-configure_args="-DUNIT_TESTING=ON"
 hostmakedepends="pkg-config python3"
 makedepends="zlib-devel openssl-devel cmocka-devel"
 checkdepends="openssh"
 short_desc="Multiplatform C library implementing the SSH v2 protocol"
-maintainer="Orphaned <orphan@voidlinux.org>"
+maintainer="skmpz <dem.procopiou@gmail.com>"
 license="LGPL-2.1-or-later"
 homepage="https://www.libssh.org/"
-distfiles="https://git.libssh.org/projects/libssh.git/snapshot/${pkgname}-${version}.tar.gz"
-checksum=df65d6054554e8ff5458628808ce8d68b928175f4fefa1c833582b9568491e64
+changelog="https://git.libssh.org/projects/libssh.git/plain/CHANGELOG"
+distfiles="https://git.libssh.org/projects/libssh.git/snapshot/libssh-${version}.tar.gz"
+checksum=2ae3a73b146440b22c5251077859f21a9efbcdd7269fc9c7a98271355e729a07
+make_check=ci-skip # some tests fail when running as root
 
 case "$XBPS_TARGET_MACHINE" in
 	*-musl) configure_args="-DHAVE_GLOB=0" ;;

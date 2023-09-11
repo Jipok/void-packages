@@ -1,17 +1,16 @@
 # Template file for 'schilytools'
 pkgname=schilytools
-version=2021.09.18
-revision=2
-wrksrc="schily-${version//./-}"
+version=2023.04.19
+revision=1
 build_style=meta
 makedepends="acl-devel attr-devel e2fsprogs-devel m4"
 depends="sccs sdd sfind smake star ved"
 short_desc="Schily's portable tools"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="CDDL-1.0"
-homepage="https://sourceforge.net/projects/schilytools/"
-distfiles="${SOURCEFORGE_SITE}/${pkgname}/schily-${version//./-}.tar.bz2"
-checksum=7c93f43d22c6e3de0eafe018ceb26ddd5cc6c543dc301f307d1e6ca313248aa4
+homepage="https://codeberg.org/schilytools/schilytools"
+distfiles="https://codeberg.org/schilytools/schilytools/archive/${version//./-}.tar.gz"
+checksum=a4270cdcca5dd69c0114079277b06e5efad260b0a099c9c09d31e16e99a23ff5
 nocross=yes  # configure + re-builds with itself
 
 do_build() {

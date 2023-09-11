@@ -1,6 +1,6 @@
 # Template file for 'dhcpcd'
 pkgname=dhcpcd
-version=9.4.0
+version=10.0.2
 revision=1
 build_style=configure
 make_check_target=test
@@ -10,11 +10,12 @@ configure_args="
 hostmakedepends="ntp pkg-config"
 makedepends="eudev-libudev-devel"
 short_desc="RFC2131 compliant DHCP client"
-maintainer="Cameron Nemo <cnemo@tutanota.com>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="BSD-2-Clause"
 homepage="https://roy.marples.name/projects/dhcpcd"
-distfiles="https://roy.marples.name/downloads/dhcpcd/dhcpcd-${version}.tar.xz"
-checksum=41a69297f380bf15ee8f94f73154f8c2bca7157a087c0d5aca8de000ba1d4513
+changelog="https://github.com/NetworkConfiguration/dhcpcd/releases"
+distfiles="https://github.com/NetworkConfiguration/dhcpcd/archive/refs/tags/v${version}.tar.gz"
+checksum=608d01d3246671c0c8b0ac2ce4109c263779a7742bfdffee988c6c6c1d997042
 lib32disabled=yes
 conf_files=/etc/dhcpcd.conf
 

@@ -1,6 +1,6 @@
 # Template file for 'kpat'
 pkgname=kpat
-version=21.12.2
+version=23.04.3
 revision=1
 build_style=cmake
 configure_args="-DWITH_BH_SOLVER=OFF"
@@ -14,4 +14,4 @@ license="GPL-2.0-only"
 homepage="https://kde.org/applications/games/kpat"
 changelog="https://kde.org/announcements/changelogs/gear/${version}/#kpat"
 distfiles="${KDE_SITE}/release-service/${version}/src/kpat-${version}.tar.xz"
-checksum=8e6b0481efcf8f65b742c1519e6b3b7aec328497ab2e0fb43a462ddd93452a6f
+checksum=74aea1d6de8f261b97b018506920e8809534e1331b44e2657e9ab60df6268395

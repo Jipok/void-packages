@@ -31,6 +31,7 @@ _EOF
 			ppc64*) _CMAKE_SYSTEM_PROCESSOR=ppc64 ;;
 			ppcle*) _CMAKE_SYSTEM_PROCESSOR=ppcle ;;
 			ppc*) _CMAKE_SYSTEM_PROCESSOR=ppc ;;
+			riscv64*) _CMAKE_SYSTEM_PROCESSOR=riscv64 ;;
 			*) _CMAKE_SYSTEM_PROCESSOR=generic ;;
 		esac
 		cat > cross_${XBPS_CROSS_TRIPLET}.cmake <<_EOF
@@ -54,6 +55,14 @@ _EOF
 	cmake_args+=" -DCMAKE_INSTALL_PREFIX=/usr"
 	cmake_args+=" -DCMAKE_BUILD_TYPE=None"
 	cmake_args+=" -DCMAKE_INSTALL_LIBDIR=lib${XBPS_TARGET_WORDSIZE}"
+	cmake_args+=" -DCMAKE_INSTALL_SYSCONFDIR=/etc"
+
+	if [ "$CROSS_BUILD" ]; then
+		cmake_args+=" -DQT_HOST_PATH=/usr"
+		# QT_HOST_PATH isn't enough in my system,
+		# which have binfmts support on and off
+		cmake_args+=" -DQT_HOST_PATH_CMAKE_DIR=/usr/lib/cmake"
+	fi
 
 	if [[ $build_helper = *"qemu"* ]]; then
 		echo "SET(CMAKE_CROSSCOMPILING_EMULATOR /usr/bin/qemu-${XBPS_TARGET_QEMU_MACHINE}-static)" \
@@ -116,7 +125,7 @@ do_check() {
 
 	: ${make_check_target:=test}
 
-	${make_cmd} ${make_check_args} ${make_check_target}
+	${make_check_pre} ${make_cmd} ${makejobs} ${make_check_args} ${make_check_target}
 }
 
 do_install() {

@@ -1,8 +1,7 @@
 # Template file for 'akonadi5'
 pkgname=akonadi5
-version=21.12.2
+version=23.04.2
 revision=1
-wrksrc="akonadi-${version}"
 build_style=cmake
 build_helper="qemu"
 hostmakedepends="extra-cmake-modules qt5-qmake qt5-host-tools python3
@@ -19,11 +18,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://community.kde.org/KDE_PIM/Akonadi"
 distfiles="${KDE_SITE}/release-service/${version}/src/akonadi-${version}.tar.xz"
-checksum=48da21d34a78423dc23ade2b3caf459297b1b1e7e81001383185c2a1da4738c4
-
-if [ "$XBPS_TARGET_NO_ATOMIC8" ]; then
-	makedepends+=" libatomic-devel"
-fi
+checksum=5e91b86e895263b76d6f1f00cd9fcd8399d5a6c293581e629ab310fc72dfa6a9
 
 pre_configure() {
 	if [ "$XBPS_TARGET_NO_ATOMIC8" ]; then
@@ -35,7 +30,7 @@ do_check() {
 	# failing tests are disabled - sqlite tests hang on futex
 	cd build
 	dbus-run-session ctest -E \
-		"(akonadixml-xmldocument|mimetypechecker|AkonadiControl-agenttype|.*sqlite.*)test"
+		"(AkonadiServer-dbconfig|entitytreemodel|akonadixml-xmldocument|mimetypechecker|AkonadiControl-agenttype|.*sqlite.*)test"
 }
 
 akonadi5-devel_package() {

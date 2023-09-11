@@ -1,6 +1,6 @@
 # Template file for 'sonnet'
 pkgname=sonnet
-version=5.91.0
+version=5.109.0
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTING=ON"
@@ -13,7 +13,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/sonnet"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=bda19e339d19ffcfa6bfa74eb6f0cdaf75e2537450d2deed03f45f4a6b91fd18
+checksum=593ba654a8b5f61af95fec3fd0b269a8f5e89dbed54d62aafb41a0ce0146eeba
 
 if [ "$CROSS_BUILD" ]; then
 	hostmakedepends+=" sonnet"

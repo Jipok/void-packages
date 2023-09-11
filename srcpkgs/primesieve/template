@@ -1,6 +1,6 @@
 # Template file for 'primesieve'
 pkgname=primesieve
-version=7.8
+version=11.1
 revision=1
 build_style=cmake
 configure_args="-DBUILD_TESTS=ON -DBUILD_SHARED_LIBS=ON -DBUILD_STATIC_LIBS=OFF"
@@ -10,11 +10,7 @@ license="BSD-2-Clause"
 homepage="https://github.com/kimwalisch/primesieve"
 changelog="https://raw.githubusercontent.com/kimwalisch/primesieve/master/ChangeLog"
 distfiles="https://github.com/kimwalisch/primesieve/archive/refs/tags/v${version}.tar.gz"
-checksum=0cd0490259e6e919c6e3dd3f3e69ac6d91e6cbe616e22a219abe4006d9293d5d
-
-if [ "$XBPS_TARGET_NO_ATOMIC8" ]; then
-	makedepends+=" libatomic-devel"
-fi
+checksum=bab3bc4a1f3247f95b83dfc494ab0ce37a370a7b05379640f58e786d8d5fba61
 
 post_install() {
 	vlicense COPYING

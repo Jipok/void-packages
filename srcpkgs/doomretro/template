@@ -1,7 +1,7 @@
 # Template file for 'doomretro'
 pkgname=doomretro
-version=4.4.6
-revision=1
+version=4.9.2
+revision=2
 build_style=cmake
 hostmakedepends="pkg-config"
 makedepends="SDL2_image-devel SDL2_mixer-devel"
@@ -11,4 +11,4 @@ license="GPL-3.0-or-later"
 homepage="https://www.doomretro.com"
 changelog="https://raw.githubusercontent.com/bradharding/doomretro/master/releasenotes.md"
 distfiles="https://github.com/bradharding/doomretro/archive/v${version}.tar.gz"
-checksum=934e0b7c80e230b1a40cb5d023b017ad8c5c2cc333da9b97280ca602c4b93160
+checksum=738b9283b80175ce7ba83d703b2cc9166d4c4b83a9a0f252629da5ce09dfa896

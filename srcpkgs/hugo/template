@@ -1,8 +1,9 @@
 # Template file for 'hugo'
 pkgname=hugo
-version=0.92.2
+version=0.118.2
 revision=1
 build_style=go
+build_helper=qemu
 go_import_path="github.com/gohugoio/hugo"
 go_build_tags="extended"
 short_desc="Fast & Modern Static Website Engine"
@@ -10,8 +11,20 @@ maintainer="Andrea Brancaleoni <abc@pompel.me>"
 license="Apache-2.0"
 homepage="https://gohugo.io"
 distfiles="https://github.com/gohugoio/hugo/archive/v${version}.tar.gz"
-checksum=00d61205f426587dcfc4e2844a6f9fb451c825b828c00f0b46e3d0930c132751
+checksum=915d7dcb44fba949c80858f9c2a55a11256162ba28a9067752f808cfe8faedaa
 
 post_install() {
 	vdoc README.md
+
+	hugo=$(find $GOPATH/bin -name hugo)
+
+	vtargetrun $hugo gen man
+	for page in $(ls man/); do
+		vman man/$page
+	done
+
+	for shell in bash fish zsh; do
+		vtargetrun $hugo completion $shell > ${pkgname}.$shell
+		vcompletion ${pkgname}.$shell $shell
+	done
 }

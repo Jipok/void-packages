@@ -1,17 +1,18 @@
 # Template file for 'dbeaver'
 pkgname=dbeaver
-version=21.3.4
+version=23.2.0
 revision=1
 # the build downloads binaries linked to glibc
 archs="x86_64 aarch64"
-hostmakedepends="apache-maven"
-depends="openjdk11" # openjdk11 or later version, when available
+hostmakedepends="apache-maven openjdk17"
+depends="openjdk17"
 short_desc="Free Universal Database Tool"
 maintainer="Kyle Nusbaum <knusbaum+void@sdf.org>"
 license="Apache-2.0"
 homepage="https://dbeaver.io"
+changelog="https://dbeaver.io/news/"
 distfiles="https://github.com/dbeaver/dbeaver/archive/${version}.tar.gz"
-checksum=562f7cae8728cb1fc8a488eb01dff8691d347c00e240ea09db7a476e65229629
+checksum=ef30d5c233dfa2dca653c8bb3d9a13f7e44c54505115142971ebcb4be393f167
 nopie=true
 
 do_build() {
@@ -24,4 +25,8 @@ do_install() {
 
 	vmkdir /usr/bin
 	ln -s /usr/lib/dbeaver/dbeaver ${DESTDIR}/usr/bin/dbeaver
+
+	vinstall product/community/icons/dbeaver.png 644 usr/share/pixmaps
+	vinstall product/community/icons/dbeaver.xpm 644 usr/share/pixmaps
+	vinstall ${FILESDIR}/dbeaver.desktop 0644 usr/share/applications
 }

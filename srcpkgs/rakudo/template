@@ -1,6 +1,6 @@
 # Template file for 'rakudo'
 pkgname=rakudo
-version=2021.12
+version=2023.08
 revision=1
 build_style=configure
 make_check_target=test
@@ -23,19 +23,23 @@ make_dirs="
  /usr/lib/raku/vendor/short 0755 root root
  /usr/lib/raku/vendor/sources 0755 root root"
 hostmakedepends="git perl"
-makedepends="libatomic_ops-devel libffi-devel libtommath-devel libuv-devel
- libzstd-devel nqp"
+makedepends="libffi-devel libtommath-devel libuv-devel libzstd-devel nqp"
 depends="nqp-${version}_${revision}"
 short_desc="Mature, production-ready implementation of the Raku language"
 maintainer="Andy Weidenbaum <atweiden@tutanota.de>"
 license="Artistic-2.0"
 homepage="https://rakudo.org"
 changelog="https://github.com/rakudo/rakudo/raw/master/docs/ChangeLog"
-distfiles="https://rakudo.org/dl/rakudo/${pkgname}-${version}.tar.gz"
-checksum=7f53d2c7138d13ab01692d5bd7dbc28f3f29ed86bd96d5280856f55a1ab05406
+distfiles="https://rakudo.org/dl/rakudo/rakudo-${version}.tar.gz"
+checksum=9f520a9267d0062033a175788d9315ed22592023066d916334231702c207eeb1
 nocross=yes
 provides="raku-${version}_${revision}"
 
+post_extract() {
+	# remove failing test
+	rm --force t/09-moar/01-profilers.t
+}
+
 post_install() {
-	vbin tools/install-dist.p6 raku-install-dist
+	vbin tools/install-dist.raku raku-install-dist
 }

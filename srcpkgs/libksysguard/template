@@ -1,19 +1,19 @@
 # Template file for 'libksysguard'
 pkgname=libksysguard
-version=5.24.1
+version=5.27.7
 revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules gettext kauth qt5-host-tools qt5-qmake
  kpackage"
 makedepends="plasma-framework-devel qt5-webchannel-devel knewstuff-devel
- libcap-devel libnl3-devel libsensors-devel
+ libcap-devel libnl3-devel libsensors-devel ki18n-devel kconfig-devel kiconthemes-devel
  $(vopt_if webengine 'qt5-webengine-devel qt5-location-devel')"
 short_desc="KDE libksysguard"
 maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/plasma/libksysguard"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=ec1b3c5a63fc990e111f582a0512459ba3cb7002423c9dd52c664abf9589165d
+checksum=682a939252e35a52b7f95a6f5bfcc7cb983fa3b5275ae3b377ab8040b292cb18
 
 build_options="webengine"
 
@@ -27,7 +27,9 @@ fi
 
 libksysguard-devel_package() {
 	short_desc+=" - development"
-	depends="${makedepends} ${sourcepkg}>=${version}_${revision}"
+	depends="plasma-framework-devel qt5-devel libsensors-devel ki18n-devel
+	 kconfig-devel kiconthemes-devel
+	 ${sourcepkg}>=${version}_${revision}"
 	pkg_install() {
 		vmove usr/include
 		vmove usr/lib/cmake

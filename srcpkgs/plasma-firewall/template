@@ -1,14 +1,15 @@
 # Template file for 'plasma-firewall'
 pkgname=plasma-firewall
-version=5.24.1
+version=5.27.7
 revision=1
 build_style=cmake
-hostmakedepends="extra-cmake-modules qt5-qmake qt5-host-tools kcmutils
- kauth kcoreaddons gettext"
+configure_args="-DKF5_HOST_TOOLING=/usr/lib/cmake"
+hostmakedepends="extra-cmake-modules qt5-qmake qt5-host-tools
+ kcmutils-devel kauth-devel kcoreaddons-devel gettext"
 makedepends="kcmutils-devel plasma-framework-devel"
 short_desc="Control Panel for ufw (Uncomplicated Firewall)"
 maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-only OR GPL-3.0-only"
 homepage="https://invent.kde.org/network/plasma-firewall"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=492bfe985bd9429efd706b02431da3efaeed94e9bb6da17223951d06f3987aef
+checksum=cdc6c3b422def13de2df5f5cad9f004efd3210a61aeaccafc2a633d8fc94b4d8

@@ -1,15 +1,16 @@
 # Template file for 'plasma-systemmonitor'
 pkgname=plasma-systemmonitor
-version=5.24.1
+version=5.27.7
 revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules gettext qt5-host-tools qt5-qmake
  kpackage kconfig kcoreaddons"
-makedepends="kirigami2-devel libksysguard-devel kitemmodels-devel"
+makedepends="kirigami2-devel libksysguard-devel kitemmodels-devel
+ knewstuff-devel"
 depends="kirigami2 qqc2-desktop-style kquickcharts ksystemstats"
 short_desc="Application for monitoring system resources"
 maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-only OR GPL-3.0-only, LGPL-2.1-only OR LGPL-3.0-only"
 homepage="https://invent.kde.org/plasma/plasma-systemmonitor"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=c0f2b38b4c015bc07d90ca5023d3d9cbe81d126b51fa4cde60a6081448981251
+checksum=14611b425b1817743acaf594005f16a6ae347b063182fec0ee1f8676589e28e3

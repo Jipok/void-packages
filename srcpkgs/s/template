@@ -1,17 +1,16 @@
 # Template file for 's'
 pkgname=s
-version=0.6.4
-revision=1
+version=0.6.8
+revision=2
 build_helper=qemu
 build_style=go
 go_import_path=github.com/zquestz/s
-hostmakedepends="git"
 short_desc="Web search from the terminal"
-maintainer="Daniel Lewan <vision360.daniel@gmail.com>"
+maintainer="Daniel Lewan <daniel@teddydd.me>"
 license="MIT"
 homepage="https://github.com/zquestz/s"
 distfiles="https://github.com/zquestz/s/archive/v${version}.tar.gz"
-checksum=5829a18da40cb5a936f32240b4244d2a0543cb85dc3d5e013ae5aa08557c148f
+checksum=fe554cfcd7d30d11bc50a3f6da3301993f71e9d7546dc0815c1c1af2639e2b2f
 
 post_build() {
 	s_cli=$(find $GOPATH/bin -name s)

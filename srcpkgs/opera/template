@@ -1,17 +1,16 @@
 # Template file for 'opera'
 pkgname=opera
-version=84.0.4316.21
+version=102.0.4880.29
 revision=1
 archs="x86_64"
 create_wrksrc=yes
-hostmakedepends="rpmextract"
 depends="ffmpeg desktop-file-utils hicolor-icon-theme"
 short_desc="Fast, secure, easy to use browser"
 maintainer="mobinmob <mobinmob@disroot.org>"
 license="custom:Proprietary"
 homepage="https://www.opera.com/computer"
-distfiles="https://rpm.opera.com/rpm/opera_stable-${version}-linux-release-x64-signed.rpm"
-checksum=df8c7b1bdea578338da2b9c82a498e3677d6038e45af14bdd06b4a9c2683fb5a
+distfiles="https://get.geo.opera.com/pub/opera/desktop/${version}/linux/opera-stable_${version}_amd64.rpm"
+checksum=f108c899421f5ce7af1e4bccdb1c925047d9fdd31fa14cfd02f52772cd130581
 repository="nonfree"
 nostrip=yes
 
@@ -21,13 +20,12 @@ do_install() {
 	vmkdir usr/lib
 
 	# Copy files
-	vcopy usr/lib64/opera /usr/lib/
-	vcopy usr/share /usr/share/
+	vcopy usr/lib64/opera usr/lib/
+	vcopy usr/share usr/share/
 
 	# Link executable in path
 	ln -s ../lib/opera/opera "${DESTDIR}/usr/bin/opera"
 
-	# Install licenses
-	vlicense usr/lib64/opera/resources/eula_desktop_eea.txt
-	vlicense usr/lib64/opera/resources/eula_desktop_row.txt
+	# Install 3rd-party licenses
+	vlicense usr/lib64/opera/opera_autoupdate.licenses
 }

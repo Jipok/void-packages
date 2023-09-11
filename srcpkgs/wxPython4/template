@@ -1,8 +1,7 @@
 # Template file for 'wxPython4'
 pkgname=wxPython4
 version=4.0.7
-revision=4
-wrksrc="wxPython-${version}"
+revision=7
 build_style=python3-module
 make_build_args="--skip-build"
 make_install_args="--skip-build"
@@ -11,7 +10,7 @@ makedepends="python3-devel wxWidgets-gtk3-devel SDL2-devel webkit2gtk-devel
  gst-plugins-base1-devel"
 depends="python3 python3-six python3-numpy python3-Pillow"
 short_desc="WxWidgets GUI toolkit library (Python3 Bindings)"
-maintainer="Jasper Chan <jasperchan515@gmail.com>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="custom:wxWindows"
 homepage="http://www.wxpython.org/"
 distfiles="${PYPI_SITE}/w/wxPython/wxPython-${version}.tar.gz"
@@ -21,8 +20,17 @@ if [ "$CROSS_BUILD" ]; then
 	CFLAGS="-I${XBPS_CROSS_BASE}/${py3_inc} -I${XBPS_CROSS_BASE}/usr/include"
 fi
 
+pre_patch() {
+	# need to patch for Python 3.11, extract them now.
+	cd bin
+	sed '/__name__.*__main__/i sys.exit(0)' waf-* >tmp-waf
+	python3 tmp-waf
+	ln -s .waf3-* .waf3
+}
+
 pre_build() {
 	chmod -R go+rX $wrksrc
+	PYTHONPATH="${PYTHONPATH:+${PYTHONPATH}:}$wrksrc"
 	if [ "$CROSS_BUILD" ]; then
 		PYPREFIX="$XBPS_CROSS_BASE"
 		LDFLAGS+=" -L${XBPS_CROSS_BASE}/${py3_lib} -L${XBPS_CROSS_BASE}/usr/lib"

@@ -1,17 +1,21 @@
 # Template file for 'delta'
 pkgname=delta
-version=0.11.3
-revision=1
+version=0.16.5
+revision=2
 build_style=cargo
+hostmakedepends="pkg-config"
+makedepends="libgit2-devel oniguruma-devel"
 checkdepends="git"
 short_desc="Syntax-highlighting pager for git"
 maintainer="Andrew Benson <abenson+void@gmail.com>"
 license="MIT"
 homepage="https://github.com/dandavison/delta"
-distfiles="${homepage}/archive/${version}.tar.gz"
-checksum=cf68f43d4d26c10551c0137a7e718719958e52267d83f29a8f7794af12095b9e
-make_check=no  # TODO: Re-enable checks when Rust gets updated
-nocross=yes # fails with current rust
+distfiles="https://github.com/dandavison/delta/archive/refs/tags/${version}.tar.gz"
+checksum=00d4740e9da4f543f34a2a0503615f8190d307d1180dfb753b6911aa6940197f
+
+post_patch() {
+	cargo update --package git2@0.16.1 --precise 0.17.2
+}
 
 post_install() {
 	vlicense LICENSE

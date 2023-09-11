@@ -1,15 +1,16 @@
 # Template file for 'kalarm'
 pkgname=kalarm
-version=21.12.2
-revision=1
+version=23.04.0
+revision=2
 build_style=cmake
 hostmakedepends="extra-cmake-modules qt5-qmake qt5-host-tools libxslt kdoctools
  kauth kconfig gettext"
-makedepends="kalarmcal-devel mailcommon-devel messagelib-devel kidletime-devel
- knotifyconfig-devel"
+makedepends="mailcommon-devel messagelib-devel kidletime-devel
+ kcalutils-devel kholidays-devel knotifyconfig-devel"
 short_desc="Personal alarm scheduler"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://www.kde.org/applications/utilities/kalarm"
 distfiles="${KDE_SITE}/release-service/${version}/src/${pkgname}-${version}.tar.xz"
-checksum=d0796b2ae14f97ae94894951c6731801aeac2f2d0a82856daa910241b1667038
+checksum=3aad46389998c50e587f2fa467b143ca978c3e04ed9de37d923f4e0b255aa131
+replaces="kalarmcal>=0"

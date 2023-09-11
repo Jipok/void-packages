@@ -1,8 +1,7 @@
 # Template file for 'ksolid'
 pkgname=ksolid
-version=5.91.0
+version=5.109.0
 revision=1
-wrksrc="${pkgname#k}-${version}"
 build_style=cmake
 hostmakedepends="kcoreaddons pkg-config flex extra-cmake-modules qt5-host-tools
  qt5-tools-devel qt5-declarative-devel"
@@ -13,7 +12,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.1-or-later"
 homepage="https://invent.kde.org/frameworks/solid"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname#k}-${version}.tar.xz"
-checksum=4f561eaa048a6c0e35c3bb14b8bc1f637708afff689f464576bba2e7ab0293a8
+checksum=bc4dfb6d1792711a48745ddb3698ed764da86fca1f79a1b931072e910b4bd569
 
 libksolid_package() {
 	short_desc+=" - runtime library"

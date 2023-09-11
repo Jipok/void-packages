@@ -1,8 +1,7 @@
 # Template file for 'mozjs78'
 pkgname=mozjs78
 version=78.9.0
-revision=4
-wrksrc="firefox-${version}"
+revision=8
 build_wrksrc=js/src
 build_style=gnu-configure
 build_helper=rust
@@ -12,7 +11,7 @@ makedepends="icu-devel libffi-devel nspr-devel python-devel readline-devel
  zlib-devel python3-devel rust-std"
 depends="nspr>=4.19"
 short_desc="Mozilla JavaScript interpreter and library (78.x series)"
-maintainer="q66 <daniel@octaforge.org>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="MPL-2.0"
 homepage="https://www.mozilla.org/firefox/"
 distfiles="${MOZILLA_SITE}/firefox/releases/${version}esr/source/firefox-${version}esr.source.tar.xz"
@@ -22,7 +21,6 @@ CXXFLAGS="-Wno-class-memaccess"
 LDFLAGS="-Wl,-z,stack-size=1048576"
 
 if [ "$XBPS_TARGET_NO_ATOMIC8" ]; then
-	makedepends+=" libatomic-devel"
 	LDFLAGS+=" -latomic"
 fi
 
@@ -45,7 +43,7 @@ do_configure() {
 		_args+=" --target=${XBPS_TRIPLET}"
 	fi
 
-	autoconf-2.13 old-configure.in > old-configure
+	AWK=awk autoconf-2.13 old-configure.in > old-configure
 
 	touch ${wrksrc}/js/src/configure
 	touch ${wrksrc}/js/src/old-configure

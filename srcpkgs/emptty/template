@@ -1,16 +1,16 @@
 # Template file for 'emptty'
 pkgname=emptty
-version=0.6.2
-revision=1
+version=0.10.0
+revision=2
 build_style=go
 go_import_path=github.com/tvrzna/emptty
 makedepends="pam-devel libX11-devel"
 short_desc="Dead simple Display Manager running in CLI as TTY login"
-maintainer="xXR01I1Xx <xxr01i1xx@tuta.io>"
+maintainer="tvrzna <emporeor@gmail.com>"
 license="MIT"
 homepage="https://github.com/tvrzna/emptty"
-distfiles="${homepage}/archive/v${version}.tar.gz"
-checksum=a750c5cbaeda6b4d0367d18cedf27d884e6fb9a0c7b20819dc878cf7d5a5013b
+distfiles="https://github.com/tvrzna/emptty/archive/v${version}.tar.gz"
+checksum=d75c6b582067f8c96d292370d6ec8ae3da6410999d3d34a29cd4e3295577cc1d
 conf_files="/etc/emptty/conf /etc/pam.d/emptty"
 
 post_install() {

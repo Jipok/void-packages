@@ -1,20 +1,29 @@
 # Template file for 'neovim'
 pkgname=neovim
-version=0.6.1
+version=0.9.2
 revision=1
 build_style=cmake
 build_helper="qemu"
-configure_args="-DCMAKE_BUILD_TYPE=Release"
-hostmakedepends="pkg-config gettext gperf LuaJIT lua51-lpeg lua51-mpack"
+# MIN_LOG_LEVEL 1: INFO, 3: ERROR, upstream's release's default is 3
+configure_args="-DCI_BUILD=OFF -DCOMPILE_LUA=OFF -DPREFER_LUA=$(vopt_if luajit OFF ON)
+ -DMIN_LOG_LEVEL=3"
+hostmakedepends="pkg-config gettext gperf lua51-lpeg lua51-mpack lua51-BitOp
+ $(vopt_if luajit LuaJIT lua51)"
 makedepends="libtermkey-devel libuv-devel libvterm-devel msgpack-devel
- LuaJIT-devel libluv-devel tree-sitter-devel"
-depends="libvterm>=0.1.0"
+ libluv-devel tree-sitter-devel $(vopt_if luajit LuaJIT-devel lua51-devel)"
 short_desc="Fork of Vim aiming to improve user experience, plugins and GUIs"
-maintainer="Steve Prybylski <sa.prybylx@gmail.com>"
-license="Apache-2.0, custom:Vim"
+maintainer="Marcin Puc <tranzystorek.io@protonmail.com>"
+license="Apache-2.0, Vim"
 homepage="https://neovim.io"
-distfiles="https://github.com/neovim/neovim/archive/v${version}.tar.gz"
-checksum=dd882c21a52e5999f656cae3f336b5fc702d52addd4d9b5cd3dc39cfff35e864
+distfiles="https://github.com/neovim/neovim/archive/refs/tags/v${version}.tar.gz"
+checksum=06b8518bad4237a28a67a4fbc16ec32581f35f216b27f4c98347acee7f5fb369
+
+build_options=luajit
+
+case "$XBPS_TARGET_MACHINE" in
+	riscv64*) build_options_default="" ;;
+	*) build_options_default="luajit" ;;
+esac
 
 alternatives="
  vi:vi:/usr/bin/nvim
@@ -24,11 +33,16 @@ alternatives="
  vim:vim:/usr/bin/nvim
  vim:vim.1:/usr/share/man/man1/nvim.1"
 
+# They want assertion
+CFLAGS=-UNDEBUG
+
 pre_configure() {
 	vsed -i runtime/CMakeLists.txt \
 		-e "s|\".*/bin/nvim|\${CMAKE_CROSSCOMPILING_EMULATOR} &|g"
+	vsed -i src/nvim/po/CMakeLists.txt \
+		-e "s|\$<TARGET_FILE:nvim|\${CMAKE_CROSSCOMPILING_EMULATOR} &|g"
 }
 
 post_install() {
-	vlicense LICENSE
+	vlicense LICENSE.txt
 }

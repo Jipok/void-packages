@@ -1,7 +1,7 @@
 # Template file for 'growlight'
 pkgname=growlight
 version=1.2.38
-revision=1
+revision=2
 build_style=cmake
 configure_args="$(vopt_bool zfs USE_LIBZFS) $(vopt_bool man USE_PANDOC)"
 hostmakedepends="pkg-config $(vopt_if man pandoc)"
@@ -22,7 +22,7 @@ desc_option_man="Use pandoc for manpages"
 desc_option_zfs="Build with ZFS Support"
 
 case "$XBPS_MACHINE" in
-	x86_64*|i686|ppc64le*) build_options_default="man" ;;
+	x86_64*|i686|ppc64le*|ppc64) build_options_default="man" ;;
 esac
 
 pre_configure() {

@@ -1,18 +1,35 @@
 # Template file for 'git-cliff'
 pkgname=git-cliff
-version=0.6.0
+version=1.3.0
 revision=1
+archs="x86_64* i686* aarch64* arm*" # ring
 build_style=cargo
+build_helper=qemu
 make_install_args="--path git-cliff"
 make_check_args="-- --skip repo::test::git_log" # This test fails without a git repo
+hostmakedepends="pkg-config"
+makedepends="libgit2-devel"
 short_desc="Changelog generator based on conventional commits"
 maintainer="Jan Christian Grünhage <jan.christian@gruenhage.xyz>"
 license="GPL-3.0-only"
 homepage="https://github.com/orhun/git-cliff"
 changelog="https://raw.githubusercontent.com/orhun/git-cliff/main/CHANGELOG.md"
 distfiles="https://github.com/orhun/git-cliff/archive/refs/tags/v${version}.tar.gz"
-checksum=451db5e7ce904f33cf5772cd67400015829e5b7b3d18955bc3e8f88977b63793
+checksum=3c130ebbd3121d3994ecd1ff1062220de610c7491ada02f9d421c8869674c386
+
+post_patch() {
+	cargo update --package git2@0.18.0 --precise 0.17.2
+}
 
 post_install() {
 	vdoc README.md
+
+	OUT_DIR=${PWD} vtargetrun ${DESTDIR}/usr/bin/git-cliff-completions
+
+	vcompletion "_git-cliff" zsh
+	vcompletion "git-cliff.fish" fish
+	vcompletion "git-cliff.bash" bash
+
+	OUT_DIR=${PWD} vtargetrun ${DESTDIR}/usr/bin/git-cliff-mangen
+	vman git-cliff.1
 }

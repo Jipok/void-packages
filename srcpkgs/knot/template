@@ -1,6 +1,6 @@
 # Template file for 'knot'
 pkgname=knot
-version=3.1.6
+version=3.2.9
 revision=1
 build_style=gnu-configure
 configure_args="
@@ -12,13 +12,16 @@ configure_args="
 conf_files="/etc/knot/knot.conf"
 hostmakedepends="automake pkg-config protobuf-c"
 makedepends="gnutls-devel lmdb-devel libedit-devel liburcu-devel
- protobuf-c-devel fstrm-devel libmaxminddb-devel"
+ protobuf-c-devel fstrm-devel libmaxminddb-devel libcap-ng-devel
+ nghttp2-devel"
+checkdepends="softhsm"
 short_desc="High-performance authoritative-only DNS server"
 maintainer="Duncaen <duncaen@voidlinux.org>"
 license="GPL-3.0-or-later"
 homepage="https://www.knot-dns.cz/"
+changelog="https://github.com/CZ-NIC/knot/raw/${version%*.*}/NEWS"
 distfiles="https://secure.nic.cz/files/knot-dns/knot-${version}.tar.xz"
-checksum=e9ba1305d750dc08fb08687aec7ac55737ca073deaa0b867c884e0c0f2fdb753
+checksum=bc1f9eb8c9f67f52805f3acfa2d0153190245fa145b007fafa9068d2da292506
 
 system_accounts="_knot"
 _knot_homedir="/var/lib/knot"

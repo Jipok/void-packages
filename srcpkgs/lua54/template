@@ -1,15 +1,14 @@
 # Template file for 'lua54'
 pkgname=lua54
-version=5.4.3
-revision=2
-wrksrc=lua-${version}
+version=5.4.6
+revision=1
 makedepends="readline-devel"
 short_desc="Powerful, fast, lightweight, embeddable scripting language (5.4.x)"
-maintainer="q66 <daniel@octaforge.org>"
+maintainer="Daniel A. Maierhofer <git@damadmai.at>"
 license="MIT"
 homepage="https://www.lua.org"
 distfiles="https://www.lua.org/ftp/lua-${version}.tar.gz"
-checksum=f8612276169e3bfcbcfb8f226195bfc6e466fe13042f1076cbde92b7ec96bbfb
+checksum=7d5ea1b9cb6aa0b59ca3dde1c6adcb57ef83a1ba8e5432c0ecd06bf439b3ad88
 
 alternatives="
  lua:lua:/usr/bin/lua5.4

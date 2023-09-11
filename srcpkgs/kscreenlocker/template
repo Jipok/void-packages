@@ -1,26 +1,20 @@
 # Template file for 'kscreenlocker'
 pkgname=kscreenlocker
-version=5.24.1
+version=5.27.7
 revision=1
 build_style=cmake
-configure_args="-DBUILD_TESTING=OFF"
-hostmakedepends="extra-cmake-modules pkg-config kcoreaddons qt5-qmake
- qt5-host-tools gettext kcmutils"
+configure_args="-DBUILD_TESTING=OFF -DKF5_HOST_TOOLING=/usr/lib/cmake"
+hostmakedepends="extra-cmake-modules pkg-config kcoreaddons-devel
+ qt5-qmake wayland-devel qt5-host-tools gettext kcmutils-devel"
 makedepends="kdeclarative-devel kidletime-devel kcmutils-devel
  libSM-devel kwayland-devel libXi-devel pam-devel libXcursor-devel
- layer-shell-qt-devel"
+ layer-shell-qt-devel libkscreen-devel"
 short_desc="KDE Library and components for secure lock screen architecture"
 maintainer="John <me@johnnynator.dev>"
 license="GPL-2.0-or-later"
 homepage="https://invent.kde.org/plasma/kscreenlocker"
 distfiles="${KDE_SITE}/plasma/${version}/${pkgname}-${version}.tar.xz"
-checksum=b8d440448f60896e423d16a8f091e9dc1b0ec1c32508f487d3d0c4159a9f3237
-
-if [ "$CROSS_BUILD" ]; then
-	hostmakedepends+=" wayland-devel"
-	configure_args+=" -DDESKTOPTOJSON_EXECUTABLE=/usr/bin/desktoptojson"
-	configure_args+=" -DWaylandScanner_EXECUTABLE=/usr/bin/wayland-scanner"
-fi
+checksum=c2013b510ed714b0f2544b37393b82cb1d6699dec829c8906d10dd249a9ec387
 
 kscreenlocker-devel_package() {
 	short_desc+=" - development"
